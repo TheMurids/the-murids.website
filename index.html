@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>The Murids — Faith, made personal.</title>
+
+  <meta
+    name="description"
+    content="The Murids is a private space for reflection, discipline, and a more intentional relationship with what you believe."
+  />
+
+  <style>
+    :root {
+      --green: #0b3127;
+      --deep-green: #071c16;
+      --ivory: #f5f3ec;
+      --white: #ffffff;
+      --gold: #c6a45a;
+      --ink: #111714;
+      --muted: #6f7772;
+      --line: rgba(10, 40, 31, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--white);
+      color: var(--ink);
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "Segoe UI",
+        Helvetica,
+        Arial,
+        sans-serif;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .serif {
+      font-family:
+        Iowan Old Style,
+        Baskerville,
+        "Times New Roman",
+        serif;
+      font-weight: 400;
+      letter-spacing: -0.045em;
+    }
+
+    /* NAV */
+
+    .nav-wrap {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 18px 26px;
+      transition: 0.35s ease;
+    }
+
+    .nav-wrap.scrolled {
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(10, 40, 31, 0.08);
+    }
+
+    nav {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.14em;
+    }
+
+    .brand-mark {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid rgba(11, 49, 39, 0.22);
+      display: grid;
+      place-items: center;
+      color: var(--gold);
+      font-family: Georgia, serif;
+      font-size: 15px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 34px;
+      font-size: 14px;
+      color: #37413c;
+    }
+
+    .nav-links a {
+      transition: opacity 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      opacity: 0.55;
+    }
+
+    .nav-cta {
+      background: var(--deep-green);
+      color: var(--white) !important;
+      padding: 11px 18px;
+      border-radius: 999px;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 100vh;
+      padding: 170px 24px 70px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background:
+        radial-gradient(circle at 50% 65%, rgba(197, 166, 92, 0.09), transparent 35%),
+        linear-gradient(to bottom, #ffffff 0%, #f8f7f2 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 28px;
+      font-weight: 600;
+    }
+
+    .hero h1 {
+      font-size: clamp(64px, 9vw, 132px);
+      line-height: 0.92;
+      max-width: 1100px;
+      margin-bottom: 32px;
+    }
+
+    .hero-copy {
+      max-width: 630px;
+      font-size: clamp(18px, 2vw, 22px);
+      color: #66706b;
+      font-weight: 400;
+      line-height: 1.6;
+      margin-bottom: 36px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .primary-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 24px;
+      border-radius: 999px;
+      background: var(--deep-green);
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-2px);
+      background: #0d2b23;
+    }
+
+    .secondary-link {
+      font-size: 14px;
+      color: var(--green);
+      padding: 12px 6px;
+    }
+
+    /* HERO LANDSCAPE */
+
+    .landscape {
+      position: relative;
+      width: min(1180px, 94vw);
+      height: 440px;
+      margin-top: 80px;
+      border-radius: 34px;
+      overflow: hidden;
+      background:
+        linear-gradient(to bottom, #e8eee8 0%, #cfd9cf 32%, #355548 100%);
+      box-shadow:
+        0 40px 100px rgba(5, 30, 22, 0.13),
+        0 3px 15px rgba(5, 30, 22, 0.08);
+    }
+
+    .sun {
+      position: absolute;
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      left: 50%;
+      top: 74px;
+      transform: translateX(-50%);
+      background: rgba(238, 220, 172, 0.7);
+      filter: blur(4px);
+      box-shadow: 0 0 80px rgba(214, 183, 107, 0.45);
+    }
+
+    .mountain {
+      position: absolute;
+      bottom: -10px;
+      width: 60%;
+      height: 78%;
+      background: #153c30;
+      clip-path: polygon(
+        0% 100%,
+        12% 66%,
+        22% 78%,
+        36% 38%,
+        52% 66%,
+        67% 29%,
+        82% 61%,
+        100% 100%
+      );
+    }
+
+    .mountain.one {
+      left: -7%;
+      opacity: 0.96;
+    }
+
+    .mountain.two {
+      right: -10%;
+      transform: scaleX(-1);
+      background: #0b2c22;
+    }
+
+    .mountain.back {
+      width: 85%;
+      height: 62%;
+      left: 8%;
+      bottom: 25px;
+      opacity: 0.35;
+      background: #5a7368;
+    }
+
+    .river {
+      position: absolute;
+      left: 50%;
+      bottom: -30px;
+      transform: translateX(-50%) rotate(3deg);
+      width: 70px;
+      height: 330px;
+      border-radius: 50%;
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(222, 198, 133, 0.45),
+          rgba(198, 162, 78, 0.95)
+        );
+      filter: blur(0.3px);
+      clip-path: polygon(
+        44% 0%,
+        58% 0%,
+        70% 18%,
+        42% 36%,
+        60% 53%,
+        37% 69%,
+        68% 100%,
+        21% 100%,
+        37% 70%,
+        21% 53%,
+        48% 35%,
+        35% 18%
+      );
+      box-shadow: 0 0 25px rgba(198, 164, 90, 0.28);
+    }
+
+    .mist {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      inset: 0;
+      background:
+        linear-gradient(
+          to top,
+          rgba(255, 255, 255, 0.02),
+          rgba(255, 255, 255, 0.18),
+          transparent 45%
+        );
+    }
+
+    /* GENERIC */
+
+    section {
+      position: relative;
+    }
+
+    .section-shell {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 140px 26px;
+    }
+
+    .section-kicker {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--green);
+      font-weight: 700;
+      margin-bottom: 30px;
+    }
+
+    .display-title {
+      font-size: clamp(52px, 7vw, 96px);
+      line-height: 0.98;
+      max-width: 1000px;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    /* PHILOSOPHY */
+
+    .philosophy {
+      background: white;
+    }
+
+    .philosophy .display-title + .display-title {
+      margin-top: 8px;
+      color: var(--green);
+    }
+
+    .three-values {
+      margin-top: 110px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--line);
+    }
+
+    .value {
+      padding: 34px 34px 0 0;
+    }
+
+    .value + .value {
+      padding-left: 34px;
+      border-left: 1px solid var(--line);
+    }
+
+    .value h3 {
+      font-family: Georgia, serif;
+      font-size: 30px;
+      font-weight: 400;
+      margin-bottom: 12px;
+    }
+
+    .value p {
+      color: var(--muted);
+      max-width: 270px;
+    }
+
+    /* PRODUCT */
+
+    .product-section {
+      background: var(--ivory);
+    }
+
+    .product-header {
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto 90px;
+    }
+
+    .product-header p {
+      max-width: 620px;
+      margin: 28px auto 0;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .phones {
+      min-height: 620px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 34px;
+      position: relative;
+    }
+
+    .phone {
+      width: 250px;
+      height: 515px;
+      border-radius: 50px;
+      padding: 9px;
+      background: #101412;
+      box-shadow: 0 35px 80px rgba(10, 35, 26, 0.16);
+      transition: transform 0.4s ease;
+    }
+
+    .phone:nth-child(1) {
+      transform: translateY(40px) rotate(-6deg);
+    }
+
+    .phone:nth-child(2) {
+      width: 275px;
+      height: 565px;
+      z-index: 2;
+    }
+
+    .phone:nth-child(3) {
+      transform: translateY(40px) rotate(6deg);
+    }
+
+    .phone-screen {
+      width: 100%;
+      height: 100%;
+      border-radius: 41px;
+      background:
+        linear-gradient(180deg, #f8f5ea 0%, #f0eee5 100%);
+      padding: 36px 22px 24px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .phone-top {
+      width: 78px;
+      height: 22px;
+      border-radius: 20px;
+      background: #121713;
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .app-greeting {
+      margin-top: 20px;
+      color: #6e756f;
+      font-size: 12px;
+    }
+
+    .app-title {
+      font-family: Georgia, serif;
+      font-size: 28px;
+      line-height: 1.05;
+      margin-top: 12px;
+    }
+
+    .app-card {
+      background: white;
+      border-radius: 22px;
+      padding: 20px;
+      margin-top: 24px;
+      box-shadow: 0 10px 25px rgba(10, 35, 26, 0.06);
+    }
+
+    .app-card small {
+      color: #78807a;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .app-number {
+      font-family: Georgia, serif;
+      font-size: 58px;
+      color: var(--green);
+      line-height: 1;
+      margin-top: 8px;
+    }
+
+    .mini-line {
+      height: 6px;
+      border-radius: 999px;
+      background: #e6e5df;
+      margin-top: 10px;
+      overflow: hidden;
+    }
+
+    .mini-line span {
+      display: block;
+      height: 100%;
+      width: 68%;
+      background: var(--gold);
+    }
+
+    /* PERSONALIZATION */
+
+    .personal {
+      background: white;
+    }
+
+    .personal-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 100px;
+      align-items: start;
+    }
+
+    .personal-copy p {
+      max-width: 520px;
+      margin-top: 32px;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .belief-list {
+      border-top: 1px solid var(--line);
+    }
+
+    .belief {
+      padding: 26px 0;
+      border-bottom: 1px solid var(--line);
+      font-family: Georgia, serif;
+      font-size: 34px;
+      display: flex;
+      justify-content: space-between;
+      transition:
+        padding-left 0.25s ease,
+        color 0.25s ease;
+      cursor: default;
+    }
+
+    .belief:hover {
+      padding-left: 12px;
+      color: var(--green);
+    }
+
+    .belief span:last-child {
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      color: var(--gold);
+    }
+
+    /* CONSISTENCY */
+
+    .consistency {
+      background: var(--ivory);
+    }
+
+    .consistency-grid {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 100px;
+      align-items: center;
+    }
+
+    .big-number {
+      font-family: Georgia, serif;
+      font-size: clamp(150px, 18vw, 270px);
+      color: var(--green);
+      line-height: 0.75;
+    }
+
+    .days-label {
+      margin-top: 34px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .gold-rule {
+      height: 2px;
+      width: 100px;
+      background: var(--gold);
+      margin-top: 22px;
+    }
+
+    .consistency-copy p {
+      margin-top: 30px;
+      max-width: 550px;
+      font-size: 18px;
+      color: var(--muted);
+    }
+
+    /* BRAND MOMENT */
+
+    .brand-moment {
+      background: var(--deep-green);
+      color: white;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 100px 24px;
+    }
+
+    .brand-moment-inner {
+      max-width: 1100px;
+    }
+
+    .brand-symbol {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      display: grid;
+      place-items: center;
+      margin: 0 auto 50px;
+      color: var(--gold);
+      font-family: Georgia, serif;
+      font-size: 25px;
+    }
+
+    .brand-moment h2 {
+      font-size: clamp(56px, 8vw, 116px);
+      line-height: 0.95;
+    }
+
+    .brand-moment .gold {
+      color: var(--gold);
+      display: block;
+      margin-top: 18px;
+    }
+
+    /* RHYTHM */
+
+    .rhythm {
+      background: white;
+    }
+
+    .rhythm-title {
+      max-width: 900px;
+      margin-bottom: 80px;
+    }
+
+    .moments {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .moment {
+      min-height: 530px;
+      border-radius: 28px;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      overflow: hidden;
+      position: relative;
+      color: white;
+    }
+
+    .moment::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .moment:nth-child(1)::before {
+      background:
+        linear-gradient(to top, rgba(8, 25, 19, 0.7), transparent 55%),
+        linear-gradient(160deg, #f0d7a3 0%, #b6cbbf 48%, #2d5545 100%);
+    }
+
+    .moment:nth-child(2)::before {
+      background:
+        linear-gradient(to top, rgba(8, 25, 19, 0.72), transparent 55%),
+        linear-gradient(150deg, #c5d9cf 0%, #769b89 45%, #174332 100%);
+    }
+
+    .moment:nth-child(3)::before {
+      background:
+        linear-gradient(to top, rgba(5, 17, 13, 0.84), transparent 60%),
+        linear-gradient(155deg, #9b7b62 0%, #283e37 52%, #071c16 100%);
+    }
+
+    .moment-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .moment small {
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      opacity: 0.72;
+    }
+
+    .moment h3 {
+      font-family: Georgia, serif;
+      font-size: 36px;
+      line-height: 1.05;
+      margin-top: 10px;
+      font-weight: 400;
+    }
+
+    /* FINAL CTA */
+
+    .final-cta {
+      min-height: 88vh;
+      background:
+        radial-gradient(circle at 50% 30%, rgba(198, 164, 90, 0.12), transparent 30%),
+        var(--ivory);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 120px 24px;
+    }
+
+    .final-inner {
+      max-width: 900px;
+    }
+
+    .final-mark {
+      font-family: Georgia, serif;
+      color: var(--gold);
+      font-size: 28px;
+      margin-bottom: 30px;
+    }
+
+    .final-cta h2 {
+      font-size: clamp(56px, 7vw, 96px);
+      line-height: 0.95;
+      margin-bottom: 34px;
+    }
+
+    .coming {
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 50px 26px 30px;
+      background: var(--deep-green);
+      color: rgba(255, 255, 255, 0.86);
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+      align-items: flex-start;
+      padding-bottom: 50px;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .footer-brand {
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      font-size: 14px;
+    }
+
+    .footer-tagline {
+      font-family: Georgia, serif;
+      font-size: 28px;
+      margin-top: 12px;
+      color: white;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 26px;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.7);
+      flex-wrap: wrap;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 24px;
+      font-size: 11px;
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* ANIMATION */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition:
+        opacity 0.9s cubic-bezier(.2,.8,.2,1),
+        transform 0.9s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 850px) {
+      .nav-links a:not(.nav-cta) {
+        display: none;
+      }
+
+      .nav-wrap {
+        padding: 15px 18px;
+      }
+
+      .hero {
+        padding-top: 140px;
+      }
+
+      .landscape {
+        height: 350px;
+        margin-top: 60px;
+        border-radius: 24px;
+      }
+
+      .section-shell {
+        padding: 100px 22px;
+      }
+
+      .three-values {
+        grid-template-columns: 1fr;
+        margin-top: 70px;
+      }
+
+      .value {
+        padding: 28px 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .value + .value {
+        padding-left: 0;
+        border-left: 0;
+      }
+
+      .phones {
+        gap: 0;
+        min-height: 580px;
+      }
+
+      .phone {
+        width: 200px;
+        height: 430px;
+      }
+
+      .phone:nth-child(1),
+      .phone:nth-child(3) {
+        position: absolute;
+        opacity: 0.55;
+      }
+
+      .phone:nth-child(1) {
+        left: -70px;
+      }
+
+      .phone:nth-child(3) {
+        right: -70px;
+      }
+
+      .phone:nth-child(2) {
+        width: 235px;
+        height: 495px;
+      }
+
+      .personal-grid,
+      .consistency-grid {
+        grid-template-columns: 1fr;
+        gap: 70px;
+      }
+
+      .moments {
+        grid-template-columns: 1fr;
+      }
+
+      .moment {
+        min-height: 430px;
+      }
+
+      .footer-top,
+      .footer-bottom {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hero h1 {
+        font-size: 62px;
+      }
+
+      .hero-copy {
+        font-size: 17px;
+      }
+
+      .landscape {
+        height: 310px;
+      }
+
+      .display-title {
+        font-size: 50px;
+      }
+
+      .brand-moment h2 {
+        font-size: 56px;
+      }
+
+      .final-cta h2 {
+        font-size: 52px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <div class="nav-wrap" id="nav">
+    <nav>
+      <a class="brand" href="#">
+        <span class="brand-mark">M</span>
+        <span>THE MURIDS</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#beliefs">Beliefs</a>
+        <a href="#journal">Journal</a>
+        <a href="#join" class="nav-cta">Join The Murids →</a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="eyebrow reveal">A more intentional way to believe.</div>
+
+    <h1 class="serif reveal">
+      Faith, made personal.
+    </h1>
+
+    <p class="hero-copy reveal">
+      A private space to reflect, practice, and grow closer to what you believe.
+    </p>
+
+    <div class="hero-actions reveal">
+      <a class="primary-btn" href="#join">Join The Murids</a>
+      <a class="secondary-link" href="#experience">
+        Discover the experience →
+      </a>
+    </div>
+
+    <div class="landscape reveal">
+      <div class="sun"></div>
+      <div class="mountain back"></div>
+      <div class="mountain one"></div>
+      <div class="mountain two"></div>
+      <div class="river"></div>
+      <div class="mist"></div>
+    </div>
+  </section>
+
+  <!-- PHILOSOPHY -->
+  <section class="philosophy" id="about">
+    <div class="section-shell">
+
+      <div class="section-kicker reveal">Built around you</div>
+
+      <h2 class="display-title serif reveal">
+        Your faith shouldn’t feel like a checklist.
+      </h2>
+
+      <h2 class="display-title serif reveal">
+        It should feel like a relationship.
+      </h2>
+
+      <div class="three-values">
+
+        <div class="value reveal">
+          <h3>Reflect</h3>
+          <p>Take a moment away from the noise.</p>
+        </div>
+
+        <div class="value reveal">
+          <h3>Practice</h3>
+          <p>Turn belief into meaningful daily action.</p>
+        </div>
+
+        <div class="value reveal">
+          <h3>Grow</h3>
+          <p>See how consistency shapes you over time.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT -->
+  <section class="product-section" id="experience">
+    <div class="section-shell">
+
+      <div class="product-header">
+        <div class="section-kicker reveal">The experience</div>
+
+        <h2 class="display-title serif reveal">
+          A quiet place in a loud world.
+        </h2>
+
+        <p class="reveal">
+          Designed to help you reconnect with what matters —
+          one moment at a time.
+        </p>
+      </div>
+
+      <div class="phones reveal">
+
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="phone-top"></div>
+            <div class="app-greeting">GOOD MORNING</div>
+            <div class="app-title">Begin with intention.</div>
+
+            <div class="app-card">
+              <small>Daily reflection</small>
+              <div class="app-title" style="font-size:22px;">
+                What deserves your attention today?
+              </div>
+            </div>
+
+            <div class="app-card">
+              <small>Your rhythm</small>
+              <div class="mini-line"><span></span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="phone-top"></div>
+            <div class="app-greeting">YOUR JOURNEY</div>
+            <div class="app-title">Small moments. Lasting change.</div>
+
+            <div class="app-card">
+              <small>Consistency</small>
+              <div class="app-number">47</div>
+              <div style="font-size:12px;color:#727a74;margin-top:6px;">
+                days
+              </div>
+              <div class="mini-line"><span></span></div>
+            </div>
+
+            <div class="app-card">
+              <small>Today</small>
+              <div style="margin-top:10px;font-size:15px;">
+                Reflection complete
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="phone-top"></div>
+            <div class="app-greeting">EVENING</div>
+            <div class="app-title">Return to what matters.</div>
+
+            <div class="app-card">
+              <small>Pause</small>
+              <div class="app-title" style="font-size:22px;">
+                What will you carry forward?
+              </div>
+            </div>
+
+            <div class="app-card">
+              <small>This week</small>
+              <div class="mini-line"><span style="width:82%"></span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PERSONAL -->
+  <section class="personal" id="beliefs">
+    <div class="section-shell personal-grid">
+
+      <div class="personal-copy">
+        <div class="section-kicker reveal">Personal by design</div>
+
+        <h2 class="display-title serif reveal">
+          Your beliefs.<br>
+          Your rhythm.<br>
+          Your journey.
+        </h2>
+
+        <p class="reveal">
+          The Murids adapts the experience around what you believe,
+          how you practice, and the person you’re trying to become.
+        </p>
+      </div>
+
+      <div class="belief-list reveal">
+        <div class="belief">
+          <span>Ismaili</span>
+          <span>→</span>
+        </div>
+
+        <div class="belief">
+          <span>Islam</span>
+          <span>→</span>
+        </div>
+
+        <div class="belief">
+          <span>Christianity</span>
+          <span>→</span>
+        </div>
+
+        <div class="belief">
+          <span>Universe</span>
+          <span>→</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONSISTENCY -->
+  <section class="consistency">
+    <div class="section-shell consistency-grid">
+
+      <div class="reveal">
+        <div class="big-number">47</div>
+        <div class="days-label">Days of consistency</div>
+        <div class="gold-rule"></div>
+      </div>
+
+      <div class="consistency-copy">
+        <div class="section-kicker reveal">Discipline</div>
+
+        <h2 class="display-title serif reveal">
+          Small moments become a way of life.
+        </h2>
+
+        <p class="reveal">
+          Daily reflection, personal consistency, and meaningful progress —
+          without noise, pressure, or childish gamification.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BRAND MOMENT -->
+  <section class="brand-moment">
+
+    <div class="brand-moment-inner">
+      <div class="brand-symbol reveal">M</div>
+
+      <h2 class="serif reveal">
+        Faith doesn’t need more noise.
+        <span class="gold">It needs intention.</span>
+      </h2>
+    </div>
+
+  </section>
+
+  <!-- RHYTHM -->
+  <section class="rhythm" id="journal">
+    <div class="section-shell">
+
+      <div class="rhythm-title">
+        <div class="section-kicker reveal">Every day</div>
+
+        <h2 class="display-title serif reveal">
+          A few minutes.<br>
+          Every day.<br>
+          For something bigger.
+        </h2>
+      </div>
+
+      <div class="moments">
+
+        <div class="moment reveal">
+          <div class="moment-content">
+            <small>Morning</small>
+            <h3>Start with intention.</h3>
+          </div>
+        </div>
+
+        <div class="moment reveal">
+          <div class="moment-content">
+            <small>During the day</small>
+            <h3>Return to what matters.</h3>
+          </div>
+        </div>
+
+        <div class="moment reveal">
+          <div class="moment-content">
+            <small>Night</small>
+            <h3>Reflect before tomorrow begins.</h3>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta" id="join">
+    <div class="final-inner">
+
+      <div class="final-mark reveal">M</div>
+
+      <h2 class="serif reveal">
+        Become more intentional about what you believe.
+      </h2>
+
+      <a href="#" class="primary-btn reveal">
+        Join The Murids
+      </a>
+
+      <div class="coming reveal">
+        COMING SOON ON IPHONE
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+
+      <div class="footer-top">
+
+        <div>
+          <div class="footer-brand">THE MURIDS</div>
+          <div class="footer-tagline">Faith, made personal.</div>
+        </div>
+
+        <div class="footer-links">
+          <a href="#about">About</a>
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Contact</a>
+          <a href="#">Instagram</a>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 The Murids</span>
+        <span>Made with intention.</span>
+      </div>
+
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById("nav");
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 30) {
+        nav.classList.add("scrolled");
+      } else {
+        nav.classList.remove("scrolled");
+      }
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      {
+        threshold: 0.12
+      }
+    );
+
+    document.querySelectorAll(".reveal").forEach((element) => {
+      observer.observe(element);
+    });
+  </script>
+
+</body>
+</html>
