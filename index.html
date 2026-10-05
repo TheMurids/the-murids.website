@@ -1,1326 +1,317 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>The Murids — Faith, made personal.</title>
-
-  <meta
-    name="description"
-    content="The Murids is a private space for reflection, discipline, and a more intentional relationship with what you believe."
-  />
-
-  <style>
-    :root {
-      --green: #0b3127;
-      --deep-green: #071c16;
-      --ivory: #f5f3ec;
-      --white: #ffffff;
-      --gold: #c6a45a;
-      --ink: #111714;
-      --muted: #6f7772;
-      --line: rgba(10, 40, 31, 0.12);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: var(--white);
-      color: var(--ink);
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "SF Pro Display",
-        "Segoe UI",
-        Helvetica,
-        Arial,
-        sans-serif;
-      line-height: 1.5;
-      overflow-x: hidden;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button,
-    a {
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .serif {
-      font-family:
-        Iowan Old Style,
-        Baskerville,
-        "Times New Roman",
-        serif;
-      font-weight: 400;
-      letter-spacing: -0.045em;
-    }
-
-    /* NAV */
-
-    .nav-wrap {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      padding: 18px 26px;
-      transition: 0.35s ease;
-    }
-
-    .nav-wrap.scrolled {
-      background: rgba(255, 255, 255, 0.72);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(10, 40, 31, 0.08);
-    }
-
-    nav {
-      max-width: 1280px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 700;
-      font-size: 14px;
-      letter-spacing: 0.14em;
-    }
-
-    .brand-mark {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      border: 1px solid rgba(11, 49, 39, 0.22);
-      display: grid;
-      place-items: center;
-      color: var(--gold);
-      font-family: Georgia, serif;
-      font-size: 15px;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 34px;
-      font-size: 14px;
-      color: #37413c;
-    }
-
-    .nav-links a {
-      transition: opacity 0.2s ease;
-    }
-
-    .nav-links a:hover {
-      opacity: 0.55;
-    }
-
-    .nav-cta {
-      background: var(--deep-green);
-      color: var(--white) !important;
-      padding: 11px 18px;
-      border-radius: 999px;
-    }
-
-    /* HERO */
-
-    .hero {
-      min-height: 100vh;
-      padding: 170px 24px 70px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      background:
-        radial-gradient(circle at 50% 65%, rgba(197, 166, 92, 0.09), transparent 35%),
-        linear-gradient(to bottom, #ffffff 0%, #f8f7f2 100%);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .eyebrow {
-      font-size: 12px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--green);
-      margin-bottom: 28px;
-      font-weight: 600;
-    }
-
-    .hero h1 {
-      font-size: clamp(64px, 9vw, 132px);
-      line-height: 0.92;
-      max-width: 1100px;
-      margin-bottom: 32px;
-    }
-
-    .hero-copy {
-      max-width: 630px;
-      font-size: clamp(18px, 2vw, 22px);
-      color: #66706b;
-      font-weight: 400;
-      line-height: 1.6;
-      margin-bottom: 36px;
-    }
-
-    .hero-actions {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .primary-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 50px;
-      padding: 0 24px;
-      border-radius: 999px;
-      background: var(--deep-green);
-      color: white;
-      font-size: 14px;
-      font-weight: 600;
-      transition:
-        transform 0.2s ease,
-        background 0.2s ease;
-    }
-
-    .primary-btn:hover {
-      transform: translateY(-2px);
-      background: #0d2b23;
-    }
-
-    .secondary-link {
-      font-size: 14px;
-      color: var(--green);
-      padding: 12px 6px;
-    }
-
-    /* HERO LANDSCAPE */
-
-    .landscape {
-      position: relative;
-      width: min(1180px, 94vw);
-      height: 440px;
-      margin-top: 80px;
-      border-radius: 34px;
-      overflow: hidden;
-      background:
-        linear-gradient(to bottom, #e8eee8 0%, #cfd9cf 32%, #355548 100%);
-      box-shadow:
-        0 40px 100px rgba(5, 30, 22, 0.13),
-        0 3px 15px rgba(5, 30, 22, 0.08);
-    }
-
-    .sun {
-      position: absolute;
-      width: 130px;
-      height: 130px;
-      border-radius: 50%;
-      left: 50%;
-      top: 74px;
-      transform: translateX(-50%);
-      background: rgba(238, 220, 172, 0.7);
-      filter: blur(4px);
-      box-shadow: 0 0 80px rgba(214, 183, 107, 0.45);
-    }
-
-    .mountain {
-      position: absolute;
-      bottom: -10px;
-      width: 60%;
-      height: 78%;
-      background: #153c30;
-      clip-path: polygon(
-        0% 100%,
-        12% 66%,
-        22% 78%,
-        36% 38%,
-        52% 66%,
-        67% 29%,
-        82% 61%,
-        100% 100%
-      );
-    }
-
-    .mountain.one {
-      left: -7%;
-      opacity: 0.96;
-    }
-
-    .mountain.two {
-      right: -10%;
-      transform: scaleX(-1);
-      background: #0b2c22;
-    }
-
-    .mountain.back {
-      width: 85%;
-      height: 62%;
-      left: 8%;
-      bottom: 25px;
-      opacity: 0.35;
-      background: #5a7368;
-    }
-
-    .river {
-      position: absolute;
-      left: 50%;
-      bottom: -30px;
-      transform: translateX(-50%) rotate(3deg);
-      width: 70px;
-      height: 330px;
-      border-radius: 50%;
-      background:
-        linear-gradient(
-          to bottom,
-          rgba(222, 198, 133, 0.45),
-          rgba(198, 162, 78, 0.95)
-        );
-      filter: blur(0.3px);
-      clip-path: polygon(
-        44% 0%,
-        58% 0%,
-        70% 18%,
-        42% 36%,
-        60% 53%,
-        37% 69%,
-        68% 100%,
-        21% 100%,
-        37% 70%,
-        21% 53%,
-        48% 35%,
-        35% 18%
-      );
-      box-shadow: 0 0 25px rgba(198, 164, 90, 0.28);
-    }
-
-    .mist {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      inset: 0;
-      background:
-        linear-gradient(
-          to top,
-          rgba(255, 255, 255, 0.02),
-          rgba(255, 255, 255, 0.18),
-          transparent 45%
-        );
-    }
-
-    /* GENERIC */
-
-    section {
-      position: relative;
-    }
-
-    .section-shell {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 140px 26px;
-    }
-
-    .section-kicker {
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--green);
-      font-weight: 700;
-      margin-bottom: 30px;
-    }
-
-    .display-title {
-      font-size: clamp(52px, 7vw, 96px);
-      line-height: 0.98;
-      max-width: 1000px;
-    }
-
-    .muted {
-      color: var(--muted);
-    }
-
-    /* PHILOSOPHY */
-
-    .philosophy {
-      background: white;
-    }
-
-    .philosophy .display-title + .display-title {
-      margin-top: 8px;
-      color: var(--green);
-    }
-
-    .three-values {
-      margin-top: 110px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      border-top: 1px solid var(--line);
-    }
-
-    .value {
-      padding: 34px 34px 0 0;
-    }
-
-    .value + .value {
-      padding-left: 34px;
-      border-left: 1px solid var(--line);
-    }
-
-    .value h3 {
-      font-family: Georgia, serif;
-      font-size: 30px;
-      font-weight: 400;
-      margin-bottom: 12px;
-    }
-
-    .value p {
-      color: var(--muted);
-      max-width: 270px;
-    }
-
-    /* PRODUCT */
-
-    .product-section {
-      background: var(--ivory);
-    }
-
-    .product-header {
-      text-align: center;
-      max-width: 900px;
-      margin: 0 auto 90px;
-    }
-
-    .product-header p {
-      max-width: 620px;
-      margin: 28px auto 0;
-      color: var(--muted);
-      font-size: 18px;
-    }
-
-    .phones {
-      min-height: 620px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 34px;
-      position: relative;
-    }
-
-    .phone {
-      width: 250px;
-      height: 515px;
-      border-radius: 50px;
-      padding: 9px;
-      background: #101412;
-      box-shadow: 0 35px 80px rgba(10, 35, 26, 0.16);
-      transition: transform 0.4s ease;
-    }
-
-    .phone:nth-child(1) {
-      transform: translateY(40px) rotate(-6deg);
-    }
-
-    .phone:nth-child(2) {
-      width: 275px;
-      height: 565px;
-      z-index: 2;
-    }
-
-    .phone:nth-child(3) {
-      transform: translateY(40px) rotate(6deg);
-    }
-
-    .phone-screen {
-      width: 100%;
-      height: 100%;
-      border-radius: 41px;
-      background:
-        linear-gradient(180deg, #f8f5ea 0%, #f0eee5 100%);
-      padding: 36px 22px 24px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .phone-top {
-      width: 78px;
-      height: 22px;
-      border-radius: 20px;
-      background: #121713;
-      position: absolute;
-      top: 12px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .app-greeting {
-      margin-top: 20px;
-      color: #6e756f;
-      font-size: 12px;
-    }
-
-    .app-title {
-      font-family: Georgia, serif;
-      font-size: 28px;
-      line-height: 1.05;
-      margin-top: 12px;
-    }
-
-    .app-card {
-      background: white;
-      border-radius: 22px;
-      padding: 20px;
-      margin-top: 24px;
-      box-shadow: 0 10px 25px rgba(10, 35, 26, 0.06);
-    }
-
-    .app-card small {
-      color: #78807a;
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    .app-number {
-      font-family: Georgia, serif;
-      font-size: 58px;
-      color: var(--green);
-      line-height: 1;
-      margin-top: 8px;
-    }
-
-    .mini-line {
-      height: 6px;
-      border-radius: 999px;
-      background: #e6e5df;
-      margin-top: 10px;
-      overflow: hidden;
-    }
-
-    .mini-line span {
-      display: block;
-      height: 100%;
-      width: 68%;
-      background: var(--gold);
-    }
-
-    /* PERSONALIZATION */
-
-    .personal {
-      background: white;
-    }
-
-    .personal-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 100px;
-      align-items: start;
-    }
-
-    .personal-copy p {
-      max-width: 520px;
-      margin-top: 32px;
-      color: var(--muted);
-      font-size: 18px;
-    }
-
-    .belief-list {
-      border-top: 1px solid var(--line);
-    }
-
-    .belief {
-      padding: 26px 0;
-      border-bottom: 1px solid var(--line);
-      font-family: Georgia, serif;
-      font-size: 34px;
-      display: flex;
-      justify-content: space-between;
-      transition:
-        padding-left 0.25s ease,
-        color 0.25s ease;
-      cursor: default;
-    }
-
-    .belief:hover {
-      padding-left: 12px;
-      color: var(--green);
-    }
-
-    .belief span:last-child {
-      font-family: Arial, sans-serif;
-      font-size: 16px;
-      color: var(--gold);
-    }
-
-    /* CONSISTENCY */
-
-    .consistency {
-      background: var(--ivory);
-    }
-
-    .consistency-grid {
-      display: grid;
-      grid-template-columns: 0.8fr 1.2fr;
-      gap: 100px;
-      align-items: center;
-    }
-
-    .big-number {
-      font-family: Georgia, serif;
-      font-size: clamp(150px, 18vw, 270px);
-      color: var(--green);
-      line-height: 0.75;
-    }
-
-    .days-label {
-      margin-top: 34px;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    .gold-rule {
-      height: 2px;
-      width: 100px;
-      background: var(--gold);
-      margin-top: 22px;
-    }
-
-    .consistency-copy p {
-      margin-top: 30px;
-      max-width: 550px;
-      font-size: 18px;
-      color: var(--muted);
-    }
-
-    /* BRAND MOMENT */
-
-    .brand-moment {
-      background: var(--deep-green);
-      color: white;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      text-align: center;
-      padding: 100px 24px;
-    }
-
-    .brand-moment-inner {
-      max-width: 1100px;
-    }
-
-    .brand-symbol {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      border: 1px solid rgba(212, 175, 55, 0.45);
-      display: grid;
-      place-items: center;
-      margin: 0 auto 50px;
-      color: var(--gold);
-      font-family: Georgia, serif;
-      font-size: 25px;
-    }
-
-    .brand-moment h2 {
-      font-size: clamp(56px, 8vw, 116px);
-      line-height: 0.95;
-    }
-
-    .brand-moment .gold {
-      color: var(--gold);
-      display: block;
-      margin-top: 18px;
-    }
-
-    /* RHYTHM */
-
-    .rhythm {
-      background: white;
-    }
-
-    .rhythm-title {
-      max-width: 900px;
-      margin-bottom: 80px;
-    }
-
-    .moments {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .moment {
-      min-height: 530px;
-      border-radius: 28px;
-      padding: 30px;
-      display: flex;
-      flex-direction: column;
-      justify-content: end;
-      overflow: hidden;
-      position: relative;
-      color: white;
-    }
-
-    .moment::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-    }
-
-    .moment:nth-child(1)::before {
-      background:
-        linear-gradient(to top, rgba(8, 25, 19, 0.7), transparent 55%),
-        linear-gradient(160deg, #f0d7a3 0%, #b6cbbf 48%, #2d5545 100%);
-    }
-
-    .moment:nth-child(2)::before {
-      background:
-        linear-gradient(to top, rgba(8, 25, 19, 0.72), transparent 55%),
-        linear-gradient(150deg, #c5d9cf 0%, #769b89 45%, #174332 100%);
-    }
-
-    .moment:nth-child(3)::before {
-      background:
-        linear-gradient(to top, rgba(5, 17, 13, 0.84), transparent 60%),
-        linear-gradient(155deg, #9b7b62 0%, #283e37 52%, #071c16 100%);
-    }
-
-    .moment-content {
-      position: relative;
-      z-index: 1;
-    }
-
-    .moment small {
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      opacity: 0.72;
-    }
-
-    .moment h3 {
-      font-family: Georgia, serif;
-      font-size: 36px;
-      line-height: 1.05;
-      margin-top: 10px;
-      font-weight: 400;
-    }
-
-    /* FINAL CTA */
-
-    .final-cta {
-      min-height: 88vh;
-      background:
-        radial-gradient(circle at 50% 30%, rgba(198, 164, 90, 0.12), transparent 30%),
-        var(--ivory);
-      display: grid;
-      place-items: center;
-      text-align: center;
-      padding: 120px 24px;
-    }
-
-    .final-inner {
-      max-width: 900px;
-    }
-
-    .final-mark {
-      font-family: Georgia, serif;
-      color: var(--gold);
-      font-size: 28px;
-      margin-bottom: 30px;
-    }
-
-    .final-cta h2 {
-      font-size: clamp(56px, 7vw, 96px);
-      line-height: 0.95;
-      margin-bottom: 34px;
-    }
-
-    .coming {
-      margin-top: 22px;
-      color: var(--muted);
-      font-size: 13px;
-      letter-spacing: 0.08em;
-    }
-
-    /* FOOTER */
-
-    footer {
-      padding: 50px 26px 30px;
-      background: var(--deep-green);
-      color: rgba(255, 255, 255, 0.86);
-    }
-
-    .footer-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .footer-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 40px;
-      align-items: flex-start;
-      padding-bottom: 50px;
-      border-bottom: 1px solid rgba(255,255,255,0.12);
-    }
-
-    .footer-brand {
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      font-size: 14px;
-    }
-
-    .footer-tagline {
-      font-family: Georgia, serif;
-      font-size: 28px;
-      margin-top: 12px;
-      color: white;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 26px;
-      font-size: 13px;
-      color: rgba(255, 255, 255, 0.7);
-      flex-wrap: wrap;
-    }
-
-    .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 24px;
-      font-size: 11px;
-      color: rgba(255,255,255,0.45);
-    }
-
-    /* ANIMATION */
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition:
-        opacity 0.9s cubic-bezier(.2,.8,.2,1),
-        transform 0.9s cubic-bezier(.2,.8,.2,1);
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* MOBILE */
-
-    @media (max-width: 850px) {
-      .nav-links a:not(.nav-cta) {
-        display: none;
-      }
-
-      .nav-wrap {
-        padding: 15px 18px;
-      }
-
-      .hero {
-        padding-top: 140px;
-      }
-
-      .landscape {
-        height: 350px;
-        margin-top: 60px;
-        border-radius: 24px;
-      }
-
-      .section-shell {
-        padding: 100px 22px;
-      }
-
-      .three-values {
-        grid-template-columns: 1fr;
-        margin-top: 70px;
-      }
-
-      .value {
-        padding: 28px 0;
-        border-bottom: 1px solid var(--line);
-      }
-
-      .value + .value {
-        padding-left: 0;
-        border-left: 0;
-      }
-
-      .phones {
-        gap: 0;
-        min-height: 580px;
-      }
-
-      .phone {
-        width: 200px;
-        height: 430px;
-      }
-
-      .phone:nth-child(1),
-      .phone:nth-child(3) {
-        position: absolute;
-        opacity: 0.55;
-      }
-
-      .phone:nth-child(1) {
-        left: -70px;
-      }
-
-      .phone:nth-child(3) {
-        right: -70px;
-      }
-
-      .phone:nth-child(2) {
-        width: 235px;
-        height: 495px;
-      }
-
-      .personal-grid,
-      .consistency-grid {
-        grid-template-columns: 1fr;
-        gap: 70px;
-      }
-
-      .moments {
-        grid-template-columns: 1fr;
-      }
-
-      .moment {
-        min-height: 430px;
-      }
-
-      .footer-top,
-      .footer-bottom {
-        flex-direction: column;
-      }
-    }
-
-    @media (max-width: 520px) {
-      .hero h1 {
-        font-size: 62px;
-      }
-
-      .hero-copy {
-        font-size: 17px;
-      }
-
-      .landscape {
-        height: 310px;
-      }
-
-      .display-title {
-        font-size: 50px;
-      }
-
-      .brand-moment h2 {
-        font-size: 56px;
-      }
-
-      .final-cta h2 {
-        font-size: 52px;
-      }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#F8F3EA">
+<title>The Murids — Faith, made personal.</title>
+<meta name="description" content="The Murids is a private space for reflection, discipline, and a more intentional relationship with what you believe.">
+<style>
+:root{
+  --deep:#071c16; --green:#0d5a3d; --green2:#113b2e;
+  --gold:#caa62d; --gold-soft:#e7cc77; --ivory:#f8f3ea;
+  --paper:#fffdf9; --ink:#10251e; --muted:#746f67;
+  --rose:#a66f6c; --line:rgba(16,37,30,.12);
+  --shadow:0 35px 90px rgba(7,28,22,.16);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.serif{font-family:"Iowan Old Style",Baskerville,"Times New Roman",serif;font-weight:400;letter-spacing:-.045em}
+.wrap{max-width:1240px;margin:auto;padding:0 26px}
+.section{padding:145px 0}
+.kicker{font-size:11px;font-weight:700;letter-spacing:.19em;text-transform:uppercase;color:var(--green);margin-bottom:25px}
+.display{margin:0;font-size:clamp(54px,7vw,100px);line-height:.95}
+.lead{color:var(--muted);font-size:clamp(17px,1.5vw,21px);line-height:1.65;max-width:650px}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .85s cubic-bezier(.2,.8,.2,1),transform .85s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* nav */
+.nav-shell{position:fixed;z-index:1000;inset:0 0 auto;padding:18px 24px;transition:.3s ease}
+.nav-shell.scrolled{padding:11px 24px;background:rgba(255,253,249,.76);backdrop-filter:blur(22px) saturate(140%);-webkit-backdrop-filter:blur(22px) saturate(140%);border-bottom:1px solid rgba(16,37,30,.07)}
+.nav{max-width:1280px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.wordmark{display:flex;align-items:center;gap:11px;font-size:12px;font-weight:800;letter-spacing:.16em}
+.wordmark img{width:34px;height:34px;object-fit:contain}
+.nav-links{display:flex;align-items:center;gap:29px;font-size:13px;color:#46534e}
+.nav-cta{background:var(--deep);color:#fff!important;padding:11px 17px;border-radius:999px}
+
+/* hero */
+.hero{min-height:100vh;padding:145px 0 80px;display:grid;align-items:center;position:relative;overflow:hidden;background:
+ radial-gradient(48% 58% at 78% 33%,rgba(236,120,96,.22),transparent 65%),
+ radial-gradient(42% 42% at 73% 24%,rgba(231,204,119,.26),transparent 62%),
+ linear-gradient(180deg,#fffdf9,#f8f1e6)}
+.hero:before{content:"";position:absolute;width:650px;height:650px;border-radius:50%;right:-240px;bottom:-260px;background:rgba(13,90,61,.07);filter:blur(40px)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:75px;align-items:center;position:relative;z-index:1}
+.hero h1{font-size:clamp(66px,8vw,126px);line-height:.88;margin:0 0 30px}
+.hero .kicker{color:var(--rose)}
+.actions{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-top:34px}
+.btn{display:inline-flex;min-height:52px;align-items:center;justify-content:center;padding:0 23px;border-radius:999px;background:var(--deep);color:white;font-size:14px;font-weight:700;box-shadow:0 14px 32px rgba(7,28,22,.14);transition:.25s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 18px 42px rgba(7,28,22,.2)}
+.link{font-size:14px;color:var(--green)}
+.hero-phone{width:min(390px,80vw);margin:auto;position:relative}
+.hero-phone:before{content:"";position:absolute;inset:10% -22% 5%;border-radius:50%;background:linear-gradient(150deg,rgba(231,204,119,.46),rgba(236,120,96,.30),rgba(13,90,61,.18));filter:blur(65px);z-index:-1}
+.hero-phone img{width:100%;border-radius:48px;box-shadow:0 50px 110px rgba(7,28,22,.26)}
+.hero-note{text-align:center;margin-top:20px;color:#8d8176;font-size:10px;letter-spacing:.15em;text-transform:uppercase}
+
+/* philosophy */
+.philosophy{background:#fff}
+.philo2{color:var(--green);margin-top:7px!important}
+.pillars{margin-top:95px;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
+.pillar{padding:32px 35px 0 0}
+.pillar+.pillar{padding-left:35px;border-left:1px solid var(--line)}
+.pillar h3{font-size:31px;margin:0 0 9px}
+.pillar p{margin:0;color:var(--muted);line-height:1.65}
+
+/* flow */
+.flow{background:var(--ivory);overflow:hidden}
+.flow-head{text-align:center;max-width:900px;margin:0 auto 74px}
+.flow-head .lead{margin:25px auto 0}
+.flow-strip{display:grid;grid-template-columns:repeat(6,minmax(210px,1fr));gap:18px;overflow-x:auto;padding:20px 26px 32px;margin:0 auto;max-width:1500px;scroll-snap-type:x mandatory}
+.flow-strip::-webkit-scrollbar{height:8px}.flow-strip::-webkit-scrollbar-thumb{background:rgba(16,37,30,.18);border-radius:999px}
+.flow-card{scroll-snap-align:center;min-width:210px}
+.phone{width:100%;aspect-ratio:9/18.3;border-radius:38px;background:#111814;padding:8px;box-shadow:0 26px 60px rgba(7,28,22,.14)}
+.screen{height:100%;border-radius:31px;background:#fffaf3;overflow:hidden;position:relative;padding:48px 17px 20px;display:flex;flex-direction:column}
+.notch{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:78px;height:22px;background:#121713;border-radius:20px}
+.stepcap{margin-top:17px;text-align:center}
+.stepcap b{display:block;font-size:13px;color:var(--ink)}
+.stepcap span{display:block;margin-top:5px;font-size:11px;line-height:1.4;color:var(--muted)}
+.logo-stage{margin:auto;display:grid;place-items:center;text-align:center}
+.logo-stage img{width:92px;margin:auto}
+.logo-stage small{margin-top:13px;color:var(--muted);font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+.belief-title{font-family:"Iowan Old Style",Baskerville,serif;font-size:27px;line-height:1.02;text-align:center;margin:19px 5px 20px}
+.choice{display:flex;align-items:center;justify-content:space-between;padding:13px 14px;margin:7px 0;border:1px solid rgba(16,37,30,.10);background:#fff;border-radius:16px;font-size:12px}
+.choice em{font-style:normal;color:var(--gold)}
+.qflower{width:74px;height:74px;border-radius:50%;margin:4px auto 21px;background:radial-gradient(circle,#f5d5cb 0 18%,#f1b7b0 19% 30%,#fff3ec 31% 50%,transparent 51%),radial-gradient(circle at 50% 20%,#fff 0 12%,transparent 13%)}
+.question{font-family:"Iowan Old Style",Baskerville,serif;font-size:23px;line-height:1.08;text-align:center;margin:auto 0 20px}
+.answer-row{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.answer{border:0;border-radius:999px;background:#6ea873;color:white;padding:12px 6px;font-size:12px}
+.feedback{text-align:center;margin:17px 6px 0;color:#55745d;font-size:11px;line-height:1.5}
+.pause-bg{margin:auto;text-align:center}
+.pause-sun{width:150px;height:150px;border-radius:50%;margin:0 auto 25px;background:linear-gradient(180deg,#f6c096,#f1dfb0 45%,#97aa93 46%,#365945);box-shadow:inset 0 -16px 40px rgba(7,28,22,.14)}
+.pause-bg h4{font-family:"Iowan Old Style",Baskerville,serif;font-size:27px;font-weight:400;margin:0}
+.pause-bg p{color:var(--muted);font-size:11px;line-height:1.5}
+.login-title{font-family:"Iowan Old Style",Baskerville,serif;font-size:26px;line-height:1.05;text-align:center;margin:25px 0 18px}
+.social{border:1px solid rgba(16,37,30,.13);border-radius:999px;background:#fff;padding:12px 10px;margin:6px 0;text-align:center;font-size:11px;font-weight:650}
+.social.apple{background:#111;color:#fff}
+.dob-label{font-size:9px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);margin-top:22px}
+.dob{margin-top:7px;border:1px solid rgba(16,37,30,.12);border-radius:13px;padding:12px;color:#a09a91;font-size:11px}
+.continue{margin-top:auto;border-radius:999px;background:#d1ab48;color:#fff;text-align:center;padding:12px;font-size:11px;font-weight:700}
+
+/* real app */
+.realapp{background:#fff}
+.real-head{max-width:860px;margin-bottom:75px}
+.real-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.real-shot{text-align:center}
+.real-shot img{width:100%;max-width:330px;margin:auto;border-radius:44px;box-shadow:var(--shadow)}
+.real-shot h3{font-size:22px;margin:24px 0 7px}
+.real-shot p{margin:0 auto;color:var(--muted);font-size:14px;line-height:1.55;max-width:290px}
+
+/* beliefs */
+.paths{background:linear-gradient(180deg,#faf6ef,#fffdf9)}
+.paths-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:90px;align-items:start}
+.path-list{border-top:1px solid var(--line)}
+.path{padding:25px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-size:clamp(29px,3.2vw,45px);font-family:"Iowan Old Style",Baskerville,serif;transition:.25s}
+.path:hover{padding-left:12px;color:var(--green)}
+.path small{font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:12px;color:var(--gold)}
+
+/* brand */
+.brand{min-height:92vh;background:radial-gradient(45% 55% at 50% 43%,rgba(13,90,61,.43),transparent 70%),var(--deep);color:white;display:grid;place-items:center;text-align:center;padding:120px 24px}
+.brand img{width:92px;margin:0 auto 43px}
+.brand h2{font-size:clamp(58px,8vw,115px);line-height:.92;margin:0;max-width:1080px}
+.brand .gold{display:block;color:var(--gold-soft);margin-top:16px}
+
+/* final/footer */
+.final{text-align:center;background:radial-gradient(38% 45% at 50% 32%,rgba(236,120,96,.11),transparent 70%),linear-gradient(180deg,#fffdf9,#f6efe5)}
+.final img{width:78px;margin:0 auto 30px}
+.final .display{max-width:950px;margin:auto}
+.coming{margin-top:19px;color:#8d8176;font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+footer{background:var(--deep);color:rgba(255,255,255,.75);padding:54px 0 34px}
+.footer-top{display:flex;justify-content:space-between;gap:45px;padding-bottom:45px;border-bottom:1px solid rgba(255,255,255,.12)}
+.footer-brand{display:flex;align-items:center;gap:12px;color:#fff;font-size:12px;font-weight:800;letter-spacing:.15em}
+.footer-brand img{width:36px}
+.footer-tag{color:#fff;font-size:28px;margin-top:14px}
+.footer-links{display:flex;gap:23px;flex-wrap:wrap;font-size:13px}
+.footer-bottom{display:flex;justify-content:space-between;gap:25px;margin-top:22px;font-size:11px;color:rgba(255,255,255,.4)}
+
+@media(max-width:900px){
+ .nav-links a:not(.nav-cta){display:none}
+ .hero-grid,.paths-grid{grid-template-columns:1fr}
+ .hero-copy{text-align:center}.hero-copy .lead{margin-left:auto;margin-right:auto}.actions{justify-content:center}
+ .pillars,.real-grid{grid-template-columns:1fr}
+ .pillar,.pillar+.pillar{padding:28px 0;border-left:0;border-bottom:1px solid var(--line)}
+ .real-grid{gap:60px}
+}
+@media(max-width:600px){
+ .nav-shell,.nav-shell.scrolled{padding:12px 15px}.wordmark span{display:none}
+ .wrap{padding:0 19px}.section{padding:105px 0}.hero{padding-top:125px}
+ .hero h1{font-size:60px}.display{font-size:49px}
+ .flow-strip{padding-left:19px;padding-right:19px}
+ .brand{min-height:78vh}.brand h2{font-size:54px}
+ .footer-top,.footer-bottom{flex-direction:column}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
 </head>
-
 <body>
 
-  <!-- NAV -->
-  <div class="nav-wrap" id="nav">
-    <nav>
-      <a class="brand" href="#">
-        <span class="brand-mark">M</span>
-        <span>THE MURIDS</span>
-      </a>
+<header class="nav-shell" id="nav">
+ <div class="nav">
+  <a href="#top" class="wordmark"><img src="murids-logo.png" alt="The Murids logo"><span>THE MURIDS</span></a>
+  <nav class="nav-links">
+   <a href="#about">About</a><a href="#flow">Experience</a><a href="#beliefs">Beliefs</a>
+   <a href="#join" class="nav-cta">Coming Soon →</a>
+  </nav>
+ </div>
+</header>
 
-      <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#beliefs">Beliefs</a>
-        <a href="#journal">Journal</a>
-        <a href="#join" class="nav-cta">Join The Murids →</a>
-      </div>
-    </nav>
+<main>
+<section class="hero" id="top">
+ <div class="wrap hero-grid">
+  <div class="hero-copy">
+   <div class="kicker reveal">A more intentional way to believe.</div>
+   <h1 class="serif reveal">Faith,<br>made personal.</h1>
+   <p class="lead reveal">A private space for reflection, practice, and a closer relationship with what you believe — designed to encourage, never judge.</p>
+   <div class="actions reveal"><a class="btn" href="#flow">See the experience</a><a class="link" href="#join">Join The Murids →</a></div>
+  </div>
+  <div class="hero-phone reveal"><img src="app-launch.jpg" alt="The Murids opening screen"><div class="hero-note">The Murids · iPhone experience</div></div>
+ </div>
+</section>
+
+<section class="section philosophy" id="about">
+ <div class="wrap">
+  <div class="kicker reveal">Built around you</div>
+  <h2 class="display serif reveal">Your faith shouldn’t feel like a checklist.</h2>
+  <h2 class="display serif philo2 reveal">It should feel like a relationship.</h2>
+  <div class="pillars">
+   <div class="pillar reveal"><h3 class="serif">Reflect</h3><p>Pause long enough to notice where your attention, choices, and faith met today.</p></div>
+   <div class="pillar reveal"><h3 class="serif">Reconnect</h3><p>Every answer is met with encouragement. There is no red, no failure state, and no “wrong” reflection.</p></div>
+   <div class="pillar reveal"><h3 class="serif">Grow</h3><p>Let small moments of awareness become a more intentional way of living.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="section flow" id="flow">
+ <div class="flow-head wrap">
+  <div class="kicker reveal">Onboarding, reimagined</div>
+  <h2 class="display serif reveal">Experience the purpose before creating an account.</h2>
+  <p class="lead reveal">Opening animation → belief selection → questions → encouraging responses → pause and reflect → login → app.</p>
+ </div>
+
+ <div class="flow-strip">
+  <div class="flow-card reveal">
+   <div class="phone"><div class="screen"><div class="notch"></div><div class="logo-stage"><img src="murids-logo.png" alt=""><small>3 second opening</small></div></div></div>
+   <div class="stepcap"><b>01 · Opening</b><span>Logo, green mountains and a gold-river atmosphere.</span></div>
   </div>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="eyebrow reveal">A more intentional way to believe.</div>
-
-    <h1 class="serif reveal">
-      Faith, made personal.
-    </h1>
-
-    <p class="hero-copy reveal">
-      A private space to reflect, practice, and grow closer to what you believe.
-    </p>
-
-    <div class="hero-actions reveal">
-      <a class="primary-btn" href="#join">Join The Murids</a>
-      <a class="secondary-link" href="#experience">
-        Discover the experience →
-      </a>
-    </div>
-
-    <div class="landscape reveal">
-      <div class="sun"></div>
-      <div class="mountain back"></div>
-      <div class="mountain one"></div>
-      <div class="mountain two"></div>
-      <div class="river"></div>
-      <div class="mist"></div>
-    </div>
-  </section>
-
-  <!-- PHILOSOPHY -->
-  <section class="philosophy" id="about">
-    <div class="section-shell">
-
-      <div class="section-kicker reveal">Built around you</div>
-
-      <h2 class="display-title serif reveal">
-        Your faith shouldn’t feel like a checklist.
-      </h2>
-
-      <h2 class="display-title serif reveal">
-        It should feel like a relationship.
-      </h2>
-
-      <div class="three-values">
-
-        <div class="value reveal">
-          <h3>Reflect</h3>
-          <p>Take a moment away from the noise.</p>
-        </div>
-
-        <div class="value reveal">
-          <h3>Practice</h3>
-          <p>Turn belief into meaningful daily action.</p>
-        </div>
-
-        <div class="value reveal">
-          <h3>Grow</h3>
-          <p>See how consistency shapes you over time.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- PRODUCT -->
-  <section class="product-section" id="experience">
-    <div class="section-shell">
-
-      <div class="product-header">
-        <div class="section-kicker reveal">The experience</div>
-
-        <h2 class="display-title serif reveal">
-          A quiet place in a loud world.
-        </h2>
-
-        <p class="reveal">
-          Designed to help you reconnect with what matters —
-          one moment at a time.
-        </p>
-      </div>
-
-      <div class="phones reveal">
-
-        <div class="phone">
-          <div class="phone-screen">
-            <div class="phone-top"></div>
-            <div class="app-greeting">GOOD MORNING</div>
-            <div class="app-title">Begin with intention.</div>
-
-            <div class="app-card">
-              <small>Daily reflection</small>
-              <div class="app-title" style="font-size:22px;">
-                What deserves your attention today?
-              </div>
-            </div>
-
-            <div class="app-card">
-              <small>Your rhythm</small>
-              <div class="mini-line"><span></span></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="phone">
-          <div class="phone-screen">
-            <div class="phone-top"></div>
-            <div class="app-greeting">YOUR JOURNEY</div>
-            <div class="app-title">Small moments. Lasting change.</div>
-
-            <div class="app-card">
-              <small>Consistency</small>
-              <div class="app-number">47</div>
-              <div style="font-size:12px;color:#727a74;margin-top:6px;">
-                days
-              </div>
-              <div class="mini-line"><span></span></div>
-            </div>
-
-            <div class="app-card">
-              <small>Today</small>
-              <div style="margin-top:10px;font-size:15px;">
-                Reflection complete
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="phone">
-          <div class="phone-screen">
-            <div class="phone-top"></div>
-            <div class="app-greeting">EVENING</div>
-            <div class="app-title">Return to what matters.</div>
-
-            <div class="app-card">
-              <small>Pause</small>
-              <div class="app-title" style="font-size:22px;">
-                What will you carry forward?
-              </div>
-            </div>
-
-            <div class="app-card">
-              <small>This week</small>
-              <div class="mini-line"><span style="width:82%"></span></div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- PERSONAL -->
-  <section class="personal" id="beliefs">
-    <div class="section-shell personal-grid">
-
-      <div class="personal-copy">
-        <div class="section-kicker reveal">Personal by design</div>
-
-        <h2 class="display-title serif reveal">
-          Your beliefs.<br>
-          Your rhythm.<br>
-          Your journey.
-        </h2>
-
-        <p class="reveal">
-          The Murids adapts the experience around what you believe,
-          how you practice, and the person you’re trying to become.
-        </p>
-      </div>
-
-      <div class="belief-list reveal">
-        <div class="belief">
-          <span>Ismaili</span>
-          <span>→</span>
-        </div>
-
-        <div class="belief">
-          <span>Islam</span>
-          <span>→</span>
-        </div>
-
-        <div class="belief">
-          <span>Christianity</span>
-          <span>→</span>
-        </div>
-
-        <div class="belief">
-          <span>Universe</span>
-          <span>→</span>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- CONSISTENCY -->
-  <section class="consistency">
-    <div class="section-shell consistency-grid">
-
-      <div class="reveal">
-        <div class="big-number">47</div>
-        <div class="days-label">Days of consistency</div>
-        <div class="gold-rule"></div>
-      </div>
-
-      <div class="consistency-copy">
-        <div class="section-kicker reveal">Discipline</div>
-
-        <h2 class="display-title serif reveal">
-          Small moments become a way of life.
-        </h2>
-
-        <p class="reveal">
-          Daily reflection, personal consistency, and meaningful progress —
-          without noise, pressure, or childish gamification.
-        </p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- BRAND MOMENT -->
-  <section class="brand-moment">
-
-    <div class="brand-moment-inner">
-      <div class="brand-symbol reveal">M</div>
-
-      <h2 class="serif reveal">
-        Faith doesn’t need more noise.
-        <span class="gold">It needs intention.</span>
-      </h2>
-    </div>
-
-  </section>
-
-  <!-- RHYTHM -->
-  <section class="rhythm" id="journal">
-    <div class="section-shell">
-
-      <div class="rhythm-title">
-        <div class="section-kicker reveal">Every day</div>
-
-        <h2 class="display-title serif reveal">
-          A few minutes.<br>
-          Every day.<br>
-          For something bigger.
-        </h2>
-      </div>
-
-      <div class="moments">
-
-        <div class="moment reveal">
-          <div class="moment-content">
-            <small>Morning</small>
-            <h3>Start with intention.</h3>
-          </div>
-        </div>
-
-        <div class="moment reveal">
-          <div class="moment-content">
-            <small>During the day</small>
-            <h3>Return to what matters.</h3>
-          </div>
-        </div>
-
-        <div class="moment reveal">
-          <div class="moment-content">
-            <small>Night</small>
-            <h3>Reflect before tomorrow begins.</h3>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- FINAL CTA -->
-  <section class="final-cta" id="join">
-    <div class="final-inner">
-
-      <div class="final-mark reveal">M</div>
-
-      <h2 class="serif reveal">
-        Become more intentional about what you believe.
-      </h2>
-
-      <a href="#" class="primary-btn reveal">
-        Join The Murids
-      </a>
-
-      <div class="coming reveal">
-        COMING SOON ON IPHONE
-      </div>
-
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-inner">
-
-      <div class="footer-top">
-
-        <div>
-          <div class="footer-brand">THE MURIDS</div>
-          <div class="footer-tagline">Faith, made personal.</div>
-        </div>
-
-        <div class="footer-links">
-          <a href="#about">About</a>
-          <a href="#">Privacy</a>
-          <a href="#">Terms</a>
-          <a href="#">Contact</a>
-          <a href="#">Instagram</a>
-        </div>
-
-      </div>
-
-      <div class="footer-bottom">
-        <span>© 2026 The Murids</span>
-        <span>Made with intention.</span>
-      </div>
-
-    </div>
-  </footer>
-
-  <script>
-    const nav = document.getElementById("nav");
-
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 30) {
-        nav.classList.add("scrolled");
-      } else {
-        nav.classList.remove("scrolled");
-      }
-    });
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
-        });
-      },
-      {
-        threshold: 0.12
-      }
-    );
-
-    document.querySelectorAll(".reveal").forEach((element) => {
-      observer.observe(element);
-    });
-  </script>
-
+  <div class="flow-card reveal">
+   <div class="phone"><div class="screen"><div class="notch"></div><div class="belief-title">Who do you<br>believe in?</div>
+    <div class="choice"><span>Ismaili</span><em>✦</em></div><div class="choice"><span>Islam</span><em>☾</em></div><div class="choice"><span>Christianity</span><em>†</em></div><div class="choice"><span>Universe</span><em>∞</em></div>
+   </div></div>
+   <div class="stepcap"><b>02 · Belief</b><span>The selected belief controls language throughout the experience.</span></div>
+  </div>
+
+  <div class="flow-card reveal">
+   <div class="phone"><div class="screen"><div class="notch"></div><div class="qflower"></div>
+    <div class="question">Have you lived today as if Mawla is watching every move you make?</div>
+    <div class="answer-row"><button class="answer">Yes</button><button class="answer">No</button></div>
+    <div class="feedback">Both choices remain calm, green, and judgment-free.</div>
+   </div></div>
+   <div class="stepcap"><b>03 · Question</b><span>One question at a time. No “Question 1 of 4” counter.</span></div>
+  </div>
+
+  <div class="flow-card reveal">
+   <div class="phone"><div class="screen"><div class="notch"></div><div class="qflower"></div>
+    <div class="question">Have you remembered Mawla throughout your day?</div>
+    <div class="answer-row"><button class="answer">Yes</button><button class="answer">No</button></div>
+    <div class="feedback">Beautiful. Keep Him close throughout your day.</div>
+   </div></div>
+   <div class="stepcap"><b>04 · Response</b><span>Positive feedback whether the answer is Yes or No.</span></div>
+  </div>
+
+  <div class="flow-card reveal">
+   <div class="phone"><div class="screen"><div class="notch"></div><div class="pause-bg">
+    <div class="pause-sun"></div><h4>A moment<br>for you.</h4><p>Take a breath. Reflect. Continue with a clearer mind.</p>
+    <div class="continue">Continue</div>
+   </div></div></div>
+   <div class="stepcap"><b>05 · Pause</b><span>A quiet reflection screen before the account request appears.</span></div>
+  </div>
+
+  <div class="flow-card reveal">
+   <div class="phone"><div class="screen"><div class="notch"></div>
+    <div class="login-title">Continue to<br>The Murids</div>
+    <div class="social apple"> &nbsp; Continue with Apple</div><div class="social">G &nbsp; Continue with Google</div>
+    <div class="dob-label">Date of birth</div><div class="dob">MM / DD / YYYY</div>
+    <div class="feedback">Name and email are autofilled. No gender question.</div><div class="continue">Continue</div>
+   </div></div>
+   <div class="stepcap"><b>06 · Login</b><span>Apple / Google only after the user has experienced the purpose.</span></div>
+  </div>
+ </div>
+</section>
+
+<section class="section realapp">
+ <div class="wrap">
+  <div class="real-head">
+   <div class="kicker reveal">After onboarding</div>
+   <h2 class="display serif reveal">Then the experience becomes part of everyday life.</h2>
+   <p class="lead reveal">The website uses your real app screens here, so the product marketing and the actual app feel like the same brand.</p>
+  </div>
+  <div class="real-grid">
+   <div class="real-shot reveal"><img src="app-home.jpg" alt="The Murids home dashboard"><h3 class="serif">Daily rhythm</h3><p>Morning, afternoon, evening, and night moments stay visible without feeling like a productivity checklist.</p></div>
+   <div class="real-shot reveal"><img src="app-history.jpg" alt="The Murids reflection history"><h3 class="serif">Remember your journey</h3><p>Reflection history creates perspective without turning faith into points, trophies, or pressure.</p></div>
+   <div class="real-shot reveal"><img src="app-profile.jpg" alt="The Murids profile"><h3 class="serif">Make it yours</h3><p>Belief, reminders, language, appearance, and account controls remain simple and personal.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="section paths" id="beliefs">
+ <div class="wrap paths-grid">
+  <div>
+   <div class="kicker reveal">Personal by design</div>
+   <h2 class="display serif reveal">The words should meet the person where they are.</h2>
+   <p class="lead reveal">Belief is not hard-coded. The same reflective question can dynamically use “Mawla,” “Allah,” or other appropriate language based on the path selected by the user.</p>
+  </div>
+  <div class="path-list reveal">
+   <div class="path"><span>Ismaili</span><small>Mawla →</small></div>
+   <div class="path"><span>Islam</span><small>Allah →</small></div>
+   <div class="path"><span>Christianity</span><small>Personalized →</small></div>
+   <div class="path"><span>Universe</span><small>Personalized →</small></div>
+  </div>
+ </div>
+</section>
+
+<section class="brand">
+ <div class="reveal"><img src="murids-logo.png" alt="The Murids"><h2 class="serif">Faith doesn’t need more noise.<span class="gold">It needs intention.</span></h2></div>
+</section>
+
+<section class="section final" id="join">
+ <div class="wrap">
+  <img class="reveal" src="murids-logo.png" alt="The Murids logo">
+  <div class="kicker reveal">The Murids</div>
+  <h2 class="display serif reveal">A few intentional moments can change the way you carry your faith.</h2>
+  <div class="actions reveal" style="justify-content:center"><a class="btn" href="#">Coming soon on iPhone</a></div>
+  <div class="coming reveal">Faith, made personal.</div>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="wrap">
+  <div class="footer-top">
+   <div><div class="footer-brand"><img src="murids-logo.png" alt=""><span>THE MURIDS</span></div><div class="footer-tag serif">Faith, made personal.</div></div>
+   <div class="footer-links"><a href="#about">About</a><a href="#flow">Experience</a><a href="#beliefs">Beliefs</a><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 The Murids</span><span>Made with intention.</span></div>
+ </div>
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+const setNav=()=>nav.classList.toggle('scrolled',scrollY>24);
+setNav();addEventListener('scroll',setNav,{passive:true});
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
 </body>
 </html>
